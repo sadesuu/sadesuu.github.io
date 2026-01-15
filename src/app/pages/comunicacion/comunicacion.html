@@ -1,0 +1,77 @@
+<div class="comunicacion-container">
+  <h1>Comunicación entre Componentes</h1>
+  <p>Ejemplo de comunicación entre componente Padre e Hijo usando @Input y @Output</p>
+
+  <app-padre></app-padre>
+
+  <div class="store-section">
+    <h2>Comunicación con Store (Signals)</h2>
+    <p>Ejemplo de comunicación usando un Store centralizado con Signals</p>
+
+    <div class="cards-container">
+      <!-- Card Padre con Store -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Componente Padre - Store</h3>
+          <button (click)="enviarAlStorePadre()">Mostrar</button>
+        </div>
+        <div class="card-body">
+          <p><strong>{{ store.mensaje() }}</strong></p>
+        </div>
+      </div>
+
+      <!-- Card Hijo con Store -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Componente Hijo - Store</h3>
+          <button (click)="enviarAlStoreHijo()">Mostrar</button>
+        </div>
+        <div class="card-body">
+          <p><strong>{{ store.mensajeHijo() }}</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="url-section">
+    <h2>Comunicación con la URL</h2>
+    <p>Ejemplo de comunicación usando parámetros de la URL</p>
+
+    <section class="ejemplo">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Tipo(s)</th>
+            <th>Habilidades</th>
+            <th>Altura</th>
+            <th>Peso</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(alumno of alumnos; track alumno.id) {
+          <tr>
+            <td>{{ alumno.id }}</td>
+            <td><strong>{{ alumno.nombre }}</strong></td>
+            <td>
+              @for(tipo of alumno.tipos; track tipo) {
+                <span class="badge tipo">{{ tipo }}</span>
+              }
+            </td>
+            <td>
+              <span class="habilidades-count">{{ alumno.habilidades.length }} habilidades</span>
+            </td>
+            <td>{{ alumno.altura }} m</td>
+            <td>{{ alumno.peso }} kg</td>
+            <td>
+              <button class="btn-ver-mas" (click)="verDetalle(alumno)">Ver más</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

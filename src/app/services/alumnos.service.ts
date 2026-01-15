@@ -1,0 +1,92 @@
+import { Injectable } from '@angular/core';
+
+export interface Pokemon {
+  id: number;
+  nombre: string;
+  tipos: string[];
+  habilidades: string[];
+  altura: number; // en metros
+  peso: number; // en kilogramos
+  foto: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AlumnosService {
+
+  private pokemons: Pokemon[] = [
+    {
+      id: 1,
+      nombre: 'Pikachu',
+      tipos: ['Eléctrico'],
+      habilidades: ['Impactrueno', 'Ataque Rápido', 'Rayo'],
+      altura: 0.4,
+      peso: 6.0,
+      foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'
+    },
+    {
+      id: 2,
+      nombre: 'Charizard',
+      tipos: ['Fuego', 'Volador'],
+      habilidades: ['Lanzallamas', 'Vuelo', 'Garra Dragón'],
+      altura: 1.7,
+      peso: 90.5,
+      foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png'
+    },
+    {
+      id: 3,
+      nombre: 'Blastoise',
+      tipos: ['Agua'],
+      habilidades: ['Hidrobomba', 'Pistola Agua', 'Protección'],
+      altura: 1.6,
+      peso: 85.5,
+      foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png'
+    },
+    {
+      id: 4,
+      nombre: 'Venusaur',
+      tipos: ['Planta', 'Veneno'],
+      habilidades: ['Rayo Solar', 'Látigo Cepa', 'Bomba Germen'],
+      altura: 2.0,
+      peso: 100.0,
+      foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png'
+    },
+    {
+      id: 5,
+      nombre: 'Gengar',
+      tipos: ['Fantasma', 'Veneno'],
+      habilidades: ['Bola Sombra', 'Hipnosis', 'Come Sueños'],
+      altura: 1.5,
+      peso: 40.5,
+      foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png'
+    },
+    {
+      id: 6,
+      nombre: 'Dragonite',
+      tipos: ['Dragón', 'Volador'],
+      habilidades: ['Furia Dragón', 'Ala de Acero', 'Hiperrayo'],
+      altura: 2.2,
+      peso: 210.0,
+      foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png'
+    },
+  ];
+
+  constructor() { }
+
+  getAlumnos() {
+    return this.pokemons;
+  }
+
+  getAlumnoById(id: number) {
+    return this.pokemons.find(pokemon => pokemon.id === id);
+  }
+
+  getPokemons() {
+    return this.pokemons;
+  }
+
+  getPokemonById(id: number) {
+    return this.pokemons.find(pokemon => pokemon.id === id);
+  }
+}

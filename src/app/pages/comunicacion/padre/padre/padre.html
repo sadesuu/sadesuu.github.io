@@ -1,0 +1,13 @@
+<div class="padre">
+  <h2>Componente Padre</h2>
+  <p>Mensaje recibido del hijo: <strong>{{ mensajeDelHijo }}</strong></p>
+  
+  <input [(ngModel)]="mensajeParaHijo" placeholder="Escribe algo">
+  
+  <!-- @Input: enviando dato al hijo -->
+  <!-- @Output: escuchando evento del hijo -->
+  <app-hijo 
+    [mensajeDelPadre]="mensajeParaHijo"
+    (mensajeEmitido)="recibirMensaje($event)">
+  </app-hijo>
+</div>

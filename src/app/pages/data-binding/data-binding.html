@@ -1,0 +1,110 @@
+<div class="container px-6 mx-auto">
+  <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+    Data binding Prueba
+  </h2>
+
+  <!-- Banner informativo -->
+  <div class="bg-purple-600 text-white p-4 rounded-lg mb-6">
+    <div class="flex items-center">
+      <span class="text-lg">✨</span>
+      <div class="ml-3">
+        <p class="font-semibold">Ejemplos sobre Data Binding</p>
+        <p class="text-sm opacity-90">Ver más →</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid de ejemplos -->
+  <div class="grid gap-6 mb-8 md:grid-cols-2">
+    
+    <!-- Interpolación -->
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <div class="flex items-center mb-3">
+        <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+            Interpolación
+          </p>
+          <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+            {{ textoInterpolacion }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Binding -->
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <div class="flex items-center mb-3">
+        <div class="p-3 mr-4 text-pink-500 bg-pink-100 rounded-full dark:text-pink-100 dark:bg-pink-500">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+            Property Binding
+          </p>
+          <img src="{{imagenUrl}}" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Binding -->
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+              Event Binding ()
+            </p>
+            <button 
+              (click)="incrementarContador()"
+              class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+              Pulsa → ({{ contadorEventos }})
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two way Data Binding -->
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <div class="flex items-center mb-3">
+        <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+            Two way Data Binding
+          </p>
+          <div class="flex gap-4 items-center">
+            <input 
+              type="number" 
+              [(ngModel)]="valor1"
+              class="w-20 px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-purple-400 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+            <span class="text-gray-500">+</span>
+            <input 
+              type="number" 
+              [(ngModel)]="valor2"
+              class="w-20 px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-purple-400 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+            <span class="text-gray-500">=</span>
+            <span class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ valor1 + valor2 }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

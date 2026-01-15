@@ -1,0 +1,9 @@
+<div class="hijo">
+  <h3>Componente Hijo</h3>
+  <p>Mensaje del padre: <strong>{{ mensajeDelPadre }}</strong></p>
+  
+  <input #inputHijo placeholder="Responde al padre">
+  <button (click)="enviarMensaje(inputHijo.value)">
+    Enviar al Padre
+  </button>
+</div>

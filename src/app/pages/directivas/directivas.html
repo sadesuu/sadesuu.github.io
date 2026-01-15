@@ -1,0 +1,216 @@
+<div class="directivas-container">
+  <h1>Ejemplos de Directivas Modernas en Angular</h1>
+
+  <!-- ========== EJEMPLO @if ========== -->
+  <section class="ejemplo">
+    <h2>1. Directiva @ if</h2>
+    <p>Muestra u oculta elementos basándose en una condición.</p>
+
+    <button (click)="toggleMensaje()">Toggle Mensaje</button>
+
+    @if (mostrarMensaje) {
+      <div class="alert success">
+        <p>✅ ¡El mensaje está visible!</p>
+      </div>
+    } @else {
+      <div class="alert info">
+        <p>ℹ️ El mensaje está oculto</p>
+      </div>
+    }
+
+    <h3>Con condiciones múltiples:</h3>
+    @if (usuario.edad >= 18) {
+      <p class="success">{{ usuario.nombre }} es mayor de edad ({{ usuario.edad }} años)</p>
+    } @else if (usuario.edad >= 13) {
+      <p class="warning">{{ usuario.nombre }} es adolescente</p>
+    } @else {
+      <p class="info">{{ usuario.nombre }} es menor de edad</p>
+    }
+
+    <h3>Ejemplo con Superheroes:</h3>
+
+    <div class="button-group">
+        <button (click)="cambiarHeroe('Spiderman')">Spiderman</button>
+        <button (click)="cambiarHeroe('Batman')">Batman</button>
+    </div>
+
+    @if (heroes === 'Spiderman') {
+      <p>🕷️ Hola, soy {{ spiderman.nombre }} y mi poder es {{ spiderman.poder }}</p>
+    } @else if (heroes === 'Batman') {
+      <p>🦇 Hola, soy {{ batman.nombre }} y mi poder es {{ batman.poder }}</p>
+    } @else {
+      <p>❓ No conozco a este héroe</p>
+    }
+  </section>
+
+  <!-- ========== EJEMPLO @for ========== -->
+  <section class="ejemplo">
+    <h2>2. Directiva @ for</h2>
+    <p>Itera sobre arrays para crear elementos dinámicamente.</p>
+
+    <h3>Lista de Pokémons:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo(s)</th>
+          <th>Habilidades</th>
+          <th>Altura (m)</th>
+          <th>Peso (kg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(alumno of alumnos; track alumno.id) {
+          <tr>
+            <td>
+              <img [src]="alumno.foto" [alt]="alumno.nombre" class="pokemon-img">
+            </td>
+            <td>{{ alumno.id }}</td>
+            <td><strong>{{ alumno.nombre }}</strong></td>
+            <td>
+              @for(tipo of alumno.tipos; track tipo) {
+                <span class="badge tipo">{{ tipo }}</span>
+              }
+            </td>
+            <td>
+              <div class="habilidades-list">
+                @for(habilidad of alumno.habilidades; track habilidad) {
+                  <span class="habilidad-item">{{ habilidad }}</span>
+                }
+              </div>
+            </td>
+            <td>{{ alumno.altura }} m</td>
+            <td>{{ alumno.peso }} kg</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <h3>Lista con índice:</h3>
+    <ol>
+      @for (fruta of frutas; track fruta; let i = $index) {
+        <li>Fruta #{{ i + 1 }}: {{ fruta }}</li>
+      }
+    </ol>
+
+    <h3>Lista con variables especiales:</h3>
+    <div class="usuarios-grid">
+      @for (user of usuarios; track user.id; let first = $first; let last = $last; let even = $even) {
+        <div class="user-card" [class.first]="first" [class.last]="last" [class.even]="even">
+          <p><strong>{{ user.nombre }}</strong></p>
+          <p>Rol: {{ user.rol }}</p>
+          <small>
+            @if (first) { <span class="badge">Primero</span> }
+            @if (even) { <span class="badge">Par</span> }
+            @if (last) { <span class="badge">Último</span> }
+        
+          </small>
+        </div>
+      }
+    </div>
+
+    <h3>Con bloque @ empty:</h3>
+    @for (item of []; track item) {
+      <p>{{ item }}</p>
+    } @empty {
+      <p class="empty">📭 No hay elementos para mostrar</p>
+    }
+  </section>
+
+  <!-- ========== EJEMPLO @switch ========== -->
+  <section class="ejemplo">
+    <h2>3. Directiva @ switch</h2>
+    <p>Selecciona entre múltiples opciones basándose en un valor.</p>
+
+    <h3>Ejemplo 1: Tipo de Usuario</h3>
+    <div class="button-group">
+      <button (click)="cambiarTipoUsuario('admin')">Admin</button>
+      <button (click)="cambiarTipoUsuario('editor')">Editor</button>
+      <button (click)="cambiarTipoUsuario('usuario')">Usuario</button>
+      <button (click)="cambiarTipoUsuario('invitado')">Invitado</button>
+    </div>
+
+    @switch (tipoUsuario) {
+      @case ('admin') {
+        <div class="alert admin">
+          <h4>👑 Panel de Administrador</h4>
+          <p>Tienes acceso completo al sistema</p>
+          <ul>
+            <li>✅ Gestionar usuarios</li>
+            <li>✅ Configurar sistema</li>
+            <li>✅ Ver reportes</li>
+            <li>✅ Editar contenido</li>
+          </ul>
+        </div>
+      }
+      @case ('editor') {
+        <div class="alert editor">
+          <h4>✏️ Panel de Editor</h4>
+          <p>Puedes editar y publicar contenido</p>
+          <ul>
+            <li>✅ Crear artículos</li>
+            <li>✅ Editar contenido</li>
+            <li>✅ Publicar posts</li>
+          </ul>
+        </div>
+      }
+      @case ('usuario') {
+        <div class="alert usuario">
+          <h4>👤 Panel de Usuario</h4>
+          <p>Acceso estándar al contenido</p>
+          <ul>
+            <li>✅ Ver contenido</li>
+            <li>✅ Comentar</li>
+            <li>✅ Perfil personal</li>
+          </ul>
+        </div>
+      }
+      @default {
+        <div class="alert default">
+          <h4>🔒 Acceso Limitado</h4>
+          <p>Por favor, inicia sesión para acceder a más funciones</p>
+        </div>
+      }
+    }
+
+    <h3>Ejemplo 2: Estado de Pedido</h3>
+    <div class="button-group">
+      <button (click)="cambiarEstadoPedido('pendiente')">Pendiente</button>
+      <button (click)="cambiarEstadoPedido('procesando')">Procesando</button>
+      <button (click)="cambiarEstadoPedido('enviado')">Enviado</button>
+      <button (click)="cambiarEstadoPedido('entregado')">Entregado</button>
+    </div>
+
+    @switch (estadoPedido) {
+      @case ('pendiente') {
+        <div class="pedido-estado pendiente">
+          <span class="icono">⏳</span>
+          <strong>Pedido Pendiente</strong>
+          <p>Tu pedido está siendo revisado</p>
+        </div>
+      }
+      @case ('procesando') {
+        <div class="pedido-estado procesando">
+          <span class="icono">📦</span>
+          <strong>En Proceso</strong>
+          <p>Estamos preparando tu pedido</p>
+        </div>
+      }
+      @case ('enviado') {
+        <div class="pedido-estado enviado">
+          <span class="icono">🚚</span>
+          <strong>Enviado</strong>
+          <p>Tu pedido está en camino</p>
+        </div>
+      }
+      @case ('entregado') {
+        <div class="pedido-estado entregado">
+          <span class="icono">✅</span>
+          <strong>Entregado</strong>
+          <p>¡Tu pedido ha sido entregado!</p>
+        </div>
+      }
+    }
+  </section>
+</div>

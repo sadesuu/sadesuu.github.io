@@ -1,0 +1,38 @@
+.hijo {
+  background: #fff3e0;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #ff9800;
+  margin-top: 20px;
+}
+
+.hijo h3 {
+  color: #f57c00;
+  margin-top: 0;
+}
+
+.hijo input {
+  padding: 10px;
+  border: 1px solid #ff9800;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.hijo button {
+  padding: 10px 20px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.hijo button:hover {
+  background: #f57c00;
+}
+
+.hijo p {
+  margin: 10px 0;
+}
