@@ -1,5 +1,4 @@
 import { Component, ElementRef, HostListener, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Aside } from './aside/aside';
 import { AsideM } from './aside-m/aside-m';
 import { Body } from './body/body';
@@ -7,6 +6,7 @@ import { Header } from './header/header';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [Aside, AsideM, Body, Header],
   templateUrl: './app.html',
   styleUrl: './app.css'

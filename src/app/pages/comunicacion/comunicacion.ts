@@ -22,7 +22,7 @@ export class Comunicacion {
     private route: ActivatedRoute,
     private alumnosService: AlumnosService
   ) {
-    this.alumnos = this.alumnosService.getAlumnos();
+    this.alumnos = this.alumnosService.getPokemons();
   }
 
   enviarAlStorePadre() {

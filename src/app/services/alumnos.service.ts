@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Pokemon {
   id: number;
   nombre: string;
   tipos: string[];
   habilidades: string[];
-  altura: number; // en metros
-  peso: number; // en kilogramos
+  altura: number;
+  peso: number;
   foto: string;
+}
+
+// Nueva interfaz para alumnos
+export interface Alumno {
+  id?: number;
+  nombre: string;
+  apellido: string;
+  edad: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnosService {
+
+  private apiUrl = 'http://localhost:3000/api/alumnos';
 
   private pokemons: Pokemon[] = [
     {
@@ -72,16 +84,30 @@ export class AlumnosService {
     },
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAlumnos() {
-    return this.pokemons;
+  // Métodos para ALUMNOS (Base de datos)
+  getAlumnos(): Observable<Alumno[]> {
+    return this.http.get<Alumno[]>(this.apiUrl);
   }
 
-  getAlumnoById(id: number) {
-    return this.pokemons.find(pokemon => pokemon.id === id);
+  getAlumnoById(id: number): Observable<Alumno> {
+    return this.http.get<Alumno>(`${this.apiUrl}/${id}`);
   }
 
+  createAlumno(alumno: Alumno): Observable<Alumno> {
+    return this.http.post<Alumno>(this.apiUrl, alumno);
+  }
+
+  updateAlumno(id: number, alumno: Alumno): Observable<Alumno> {
+    return this.http.put<Alumno>(`${this.apiUrl}/${id}`, alumno);
+  }
+
+  deleteAlumno(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  // Métodos para POKEMONS (Local)
   getPokemons() {
     return this.pokemons;
   }

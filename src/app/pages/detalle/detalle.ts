@@ -21,7 +21,7 @@ export class Detalle implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.alumno = this.alumnosService.getAlumnoById(parseInt(id));
+      this.alumno = this.alumnosService.getPokemonById(parseInt(id));
     }
   }
 
