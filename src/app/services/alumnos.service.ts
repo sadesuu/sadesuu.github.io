@@ -86,33 +86,11 @@ export class AlumnosService {
 
   constructor(private http: HttpClient) { }
 
-  // Métodos para ALUMNOS (Base de datos)
-  getAlumnos(): Observable<Alumno[]> {
-    return this.http.get<Alumno[]>(this.apiUrl);
+  getPokemonById(id: number): Pokemon | undefined {
+    return this.pokemons.find(p => p.id === id);
   }
 
-  getAlumnoById(id: number): Observable<Alumno> {
-    return this.http.get<Alumno>(`${this.apiUrl}/${id}`);
-  }
-
-  createAlumno(alumno: Alumno): Observable<Alumno> {
-    return this.http.post<Alumno>(this.apiUrl, alumno);
-  }
-
-  updateAlumno(id: number, alumno: Alumno): Observable<Alumno> {
-    return this.http.put<Alumno>(`${this.apiUrl}/${id}`, alumno);
-  }
-
-  deleteAlumno(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
-  }
-
-  // Métodos para POKEMONS (Local)
-  getPokemons() {
+  getPokemons(): Pokemon[] {
     return this.pokemons;
-  }
-
-  getPokemonById(id: number) {
-    return this.pokemons.find(pokemon => pokemon.id === id);
   }
 }
