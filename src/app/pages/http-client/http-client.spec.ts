@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HttpClient } from './http-client';
+import { HttpClientComponent } from './http-client';
 
-describe('HttpClient', () => {
-  let component: HttpClient;
-  let fixture: ComponentFixture<HttpClient>;
+describe('HttpClientComponent', () => {
+  let component: HttpClientComponent;
+  let fixture: ComponentFixture<HttpClientComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClient]
+      imports: [HttpClientComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HttpClient);
+    fixture = TestBed.createComponent(HttpClientComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
