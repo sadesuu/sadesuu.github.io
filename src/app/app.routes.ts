@@ -11,10 +11,7 @@ import { Prueba } from './pages/prueba/prueba';
 import { Prueba2 } from './prueba2/prueba2';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: Inicio
-    },
+  
     {
         path: 'inicio',
         component: Inicio
@@ -54,5 +51,8 @@ export const routes: Routes = [
     {
         path: 'prueba2',
         component: Prueba2
+    },  {
+        path: '',
+        component: Inicio
     }
 ];
