@@ -7,6 +7,8 @@ import { Formularios } from './pages/formularios/formularios';
 import { Servicios } from './pages/servicios/servicios';
 import { HttpClient } from './pages/http-client/http-client';
 import { Detalle } from './pages/detalle/detalle';
+import { Prueba } from './pages/prueba/prueba';
+import { Prueba2 } from './prueba2/prueba2';
 
 export const routes: Routes = [
     {
@@ -44,5 +46,13 @@ export const routes: Routes = [
     {
         path: 'detalle/:id',
         component: Detalle
+    },
+    {
+        path: 'prueba',
+        component: Prueba
+    },
+    {
+        path: 'prueba2',
+        component: Prueba2
     }
 ];
