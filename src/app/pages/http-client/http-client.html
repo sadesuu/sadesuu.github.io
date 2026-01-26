@@ -8,18 +8,28 @@
         <h2 class="text-xl font-bold text-green-600">Peticion HTTP</h2>
         <p class="">Al pulsar el botón se muestra la lista de corredores recibida por la api.</p>
         <button type="button"
-            class="cursor-pointer bg-green-300 py-2 px-5 rounded-lg w-full h-12 hover:bg-green-400 transition ease-out duration-200" (click)="obtenerCorredores()">Mostrar
-            a los corredores</button>
+            class="cursor-pointer bg-green-300 py-2 px-5 rounded-lg w-full h-12 hover:bg-green-400 transition ease-out duration-200"
+            (click)="obtenerCorredores()">
+            @if(cargando()) {
+            <div class="flex justify-center items-center">
+                <span
+                    class="ml-2 inline-block animate-spin border-2 border-green-700 border-t-0 border-r-0 border-b-0 rounded-full w-4 h-4"></span>
+                <p>Cargando....</p>
+            </div>
+            }@else { Mostrar
+            a los corredores }
+
+        </button>
     </div>
 </div>
 
 <div class="max-w-full mx-auto p-6 flex justify-center">
 
 
-@if (corredores.length > 0) {
-     <div class="flex flex-col bg-white h-min rounded-lg w-7xl p-6 gap-4 shadow-xl">
+    @if (corredores.length > 0) {
+    <div class="flex flex-col bg-white h-min rounded-lg w-7xl p-6 gap-4 shadow-xl">
         <h2 class="text-xl font-bold text-blue-600">Lista de corredores</h2>
-        
+
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse">
                 <thead>
@@ -31,23 +41,24 @@
                 </thead>
                 <tbody>
                     @for (corredor of corredores; track corredor.dorsal) {
-                        <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">{{corredor.dorsal}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{corredor.corredor}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{corredor.categoria}}</td>
-                        </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border border-gray-300 px-4 py-2">{{corredor.dorsal}}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{corredor.corredor}}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{corredor.categoria}}</td>
+                    </tr>
                     }
                 </tbody>
             </table>
         </div>
-        
+
     </div>
-}@else {
-     <div class="flex flex-col justify-center items-center bg-white h-min rounded-lg w-7xl p-6 gap-4 shadow-xl border-2 border-dashed border-gray-300">
+    }@else {
+    <div
+        class="flex flex-col justify-center items-center bg-white h-min rounded-lg w-7xl p-6 gap-4 shadow-xl border-2 border-dashed border-gray-300">
         <h2 class="text-xl font-bold text-red-400">No hay corredores apuntados</h2>
     </div>
-}
-   
+    }
+
 
 
 </div>
