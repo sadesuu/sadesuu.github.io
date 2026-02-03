@@ -1,0 +1,66 @@
+<div class="max-w-full max-h-full p-12">
+    <div class="flex justify-center flex-col items-center gap-4">
+        <h2 class="text-4xl font-bold">Poke API</h2>
+        <p class="text-center text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400">
+            Página de prueba que imprime la Pokédex. En esta página pueden encontrar implementaciones de directivas,
+            observables, servicios, etc.
+        </p>
+    </div>
+
+    <div class="p-12">
+        <h2 class="text-4xl font-bold">Lista de pokemons:</h2>
+        
+        <!-- Barra de búsqueda -->
+        <div class="mt-6 mb-4">
+            <input 
+                type="text" 
+                [(ngModel)]="searchTerm" 
+                (ngModelChange)="onSearchChange()"
+                placeholder="Buscar Pokémon por nombre..." 
+                class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 
+                       focus:border-red-500 dark:focus:border-red-400 focus:outline-none 
+                       bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                       placeholder-gray-500 dark:placeholder-gray-400
+                       transition-colors duration-200 shadow-sm"
+            />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6">
+            <div *ngFor="let pokemon of filteredPokemonsList$ | async"
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl p-4 flex flex-col items-center transition-all duration-300 hover:scale-105 hover:-translate-y-1 border-t-4 border-x border-b border-gray-100 dark:border-gray-700 overflow-hidden relative"
+                [style.border-top-color]="getTypeColor(pokemon.types[0])">
+                <a [routerLink]="['/poke-detalles', pokemon.id]" class="cursor-pointer">
+                    <!-- Número ID -->
+                    <span class="self-end text-xs font-bold text-gray-400 dark:text-gray-500 mb-1">
+                        #{{ pokemon.id.toString().padStart(3, '0') }}
+                    </span>
+
+                    <!-- Imagen con fondo degradado sutil y tamaño reducido -->
+                    <div
+                        class="w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl mb-3 p-2">
+                        <img [src]="pokemon.image" [alt]="pokemon.name"
+                            class="w-full h-full object-contain drop-shadow-lg" />
+                    </div>
+
+                    <!-- Nombre -->
+                    <h3
+                        class="text-sm sm:text-base font-bold text-gray-800 dark:text-gray-100 text-center mb-2 capitalize">
+                        {{ pokemon.name }}
+                    </h3>
+
+                    <!-- Tipos -->
+                    <div class="flex gap-1 flex-wrap justify-center">
+                        <span *ngFor="let type of pokemon.types" [ngClass]="typeColors[type] || typeColors['default']"
+                            class="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-white text-[10px] sm:text-xs font-semibold uppercase shadow-sm">
+                            {{ type }}
+                        </span>
+                    </div>
+
+                    <!-- Efecto decorativo de fondo con el color del tipo -->
+                    <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full opacity-5"
+                        [ngClass]="typeColors[pokemon.types[0]] || typeColors['default']"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

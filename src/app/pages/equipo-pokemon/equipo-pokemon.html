@@ -1,0 +1,77 @@
+<div class="max-w-full max-h-full p-12">
+    <div class="flex justify-center flex-col items-center gap-4 mb-8">
+        <h2 class="text-4xl font-bold">Mi Equipo Pokémon</h2>
+        <p class="text-center text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400">
+            Gestiona tu equipo de Pokémon. Máximo 6 pokémon.
+        </p>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Mensaje si no hay pokémon en el equipo -->
+        <div *ngIf="(equipo$ | async)?.length === 0" 
+             class="text-center py-12 bg-gray-100 dark:bg-gray-800 rounded-xl">
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
+                No tienes pokémon en tu equipo todavía
+            </p>
+            <a routerLink="/poke-api" 
+               class="inline-block px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all duration-200 shadow-md">
+                Ir a buscar Pokémon
+            </a>
+        </div>
+
+        <!-- Grid de pokémon del equipo -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div *ngFor="let pokemon of equipo$ | async"
+                 class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl p-6 flex flex-col items-center transition-all duration-300 border-t-4 border-x border-b border-gray-100 dark:border-gray-700 overflow-hidden relative"
+                 [style.border-top-color]="getTypeColor(pokemon.types[0])">
+                
+                <!-- Número ID -->
+                <span class="self-end text-xs font-bold text-gray-400 dark:text-gray-500 mb-2">
+                    #{{ pokemon.id.toString().padStart(3, '0') }}
+                </span>
+
+                <!-- Imagen -->
+                <div class="w-40 h-40 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl mb-4 p-2">
+                    <img [src]="pokemon.image" [alt]="pokemon.name"
+                         class="w-full h-full object-contain drop-shadow-lg" />
+                </div>
+
+                <!-- Nombre -->
+                <div class="w-full mb-3">
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 text-center capitalize">
+                        {{ pokemon.name }}
+                    </h3>
+                </div>
+
+                <!-- Tipos -->
+                <div class="flex gap-2 flex-wrap justify-center mb-4">
+                    <span *ngFor="let type of pokemon.types" 
+                          [ngClass]="typeColors[type] || typeColors['default']"
+                          class="px-3 py-1 rounded-full text-white text-xs font-semibold uppercase shadow-sm">
+                        {{ type }}
+                    </span>
+                </div>
+
+                <!-- Botón de eliminar -->
+                <div class="w-full">
+                    <button (click)="eliminarPokemon(pokemon)"
+                            class="w-full px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-lg transition-all duration-200 shadow-sm">
+                        🗑️ Eliminar
+                    </button>
+                </div>
+
+                <!-- Efecto decorativo -->
+                <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full opacity-5"
+                     [ngClass]="typeColors[pokemon.types[0]] || typeColors['default']"></div>
+            </div>
+        </div>
+
+        <!-- Botón para ir a buscar más pokémon -->
+        <div class="mt-8 text-center" *ngIf="(equipo$ | async)?.length && (equipo$ | async)!.length > 0">
+            <a routerLink="/poke-api" 
+               class="inline-block px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all duration-200 shadow-md">
+                + Buscar más Pokémon
+            </a>
+        </div>
+    </div>
+</div>

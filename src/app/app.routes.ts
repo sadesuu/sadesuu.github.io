@@ -7,8 +7,9 @@ import { Formularios } from './pages/formularios/formularios';
 import { Servicios } from './pages/servicios/servicios';
 import { HttpClientComponent } from './pages/http-client/http-client';
 import { Detalle } from './pages/detalle/detalle';
-import { Prueba } from './pages/prueba/prueba';
-import { Prueba2 } from './prueba2/prueba2';
+import { PokeApi } from  './pages/poke-api/poke-api';
+import { PokeDetalles } from './pages/poke-detalles/poke-detalles';
+import { EquipoPokemon } from './pages/equipo-pokemon/equipo-pokemon';
 
 export const routes: Routes = [
   
@@ -45,13 +46,19 @@ export const routes: Routes = [
         component: Detalle
     },
     {
-        path: 'prueba',
-        component: Prueba
+        path: 'poke-api',
+        component: PokeApi
+
     },
     {
-        path: 'prueba2',
-        component: Prueba2
-    },  {
+        path: 'poke-detalles/:id',
+        component: PokeDetalles
+    },
+    {
+        path: 'equipo-pokemon',
+        component: EquipoPokemon
+    },
+    {
         path: '',
         component: Inicio
     }
